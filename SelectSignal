@@ -1,0 +1,8 @@
+//rotate till you get to the new position
+for(int i = 0; i <= (64 - savePos); i++) {
+    //ONE FULL ROTATION
+    stepsRequired = STEPS_PER_OUT_REV;
+    steppermotor.setSpeed(900);
+    steppermotor.step(-32);
+  }
+}

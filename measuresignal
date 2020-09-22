@@ -1,0 +1,25 @@
+void setup(){
+//Everything is done in setup. this is so no extra button is needed to reset code. 
+//To refind the optimal signal strength press the reset button
+
+//Serial Plot (Visualization of signal strength displayed on computer)
+  Serial.begin(9600);
+  //one full rotation is done in the for loop
+  for(int i = 0; i <= 64; i++) {
+    //ONE FULL ROTATION
+    stepsRequired = STEPS_PER_OUT_REV;
+    steppermotor.setspeed(900);
+    steppermotor.step(32);
+    pos = i;
+    //delay to ensure voltage capture
+    delay(10);
+    //we get the amps
+    volts = analogRead(0);
+    Serial.println(volts);
+    
+    if(volts > maxVolts) {
+      //save the current position
+      volts = maxVolts;
+      savePos = i;
+    }
+  }
